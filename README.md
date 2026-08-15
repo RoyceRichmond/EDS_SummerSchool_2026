@@ -1,2 +1,2 @@
-# EDS_SummerSchool_2026
+# EDS Summer School 2026
 repo for eds summer school on analog design
