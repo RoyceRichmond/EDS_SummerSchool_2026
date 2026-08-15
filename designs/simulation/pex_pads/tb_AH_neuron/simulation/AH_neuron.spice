@@ -1,0 +1,46 @@
+** sch_path: /foss/designs/Mosbious_2025_Spikcore/designs/libs/tb_core_analogs_pads/tb_AH_neuron/AH_neuron.sch
+**.subckt AH_neuron
+V1 net1 GND vd_v
+Vdd_c net2 vdd 0
+.save i(vdd_c)
+I0 vdd pad PULSE(0 1000p 1u 10n 10n 1u 5u)
+R1 net2 net1 10 m=1
+R2 pad GND 250k m=1
+V2 DVDD GND 5
+V4 DVSS GND 0
+V5 VSS GND 0
+XIO1 DVSS DVDD VSS vdd pad ASIG gf180mcu_fd_io__asig_5p0_extracted
+V3 net3 GND 0.49
+R3 v_bias net3 10 m=1
+x2 vdd ASIG_in ASIG GND v_bias AH_neuron_pex
+XIO2 DVSS DVDD VSS vdd pad ASIG_in gf180mcu_fd_io__asig_5p0_extracted
+**** begin user architecture code
+
+
+.option method=gear seed=12
+.tran 10u 100m
+.include /foss/designs/Mosbious_2025_Spikcore/designs/pex/AH_neuron/AH_neuron_pex.spice
+.include /foss/designs/Mosbious_2025_Spikcore/miscellaneous/sscs-chipathon/resources/Integration/Chipathon2025_pads/xschem/gf180mcu_fd_io__asig_5p0_extracted.spice
+.param vd_v=3.3
+.save allcurrents
+.options save currents
+.control
+	set num_threads=16
+	run
+	write AH_neuron_pad.raw
+.endc
+
+
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_typical
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

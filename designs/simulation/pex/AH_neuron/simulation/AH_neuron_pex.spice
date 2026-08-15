@@ -1,0 +1,72 @@
+** sch_path: /foss/designs/Mosbious_2025_Spikcore/designs/pex/AH_neuron/AH_neuron_pex.sch
+**.subckt AH_neuron_pex vdd Current_in vout vss v_bias
+V1 net3 vss 3.3
+I0 vdd net1 PULSE(0 1000p 1u 10n 10n 1u 5u)
+R1 vdd net3 10 m=1
+R2 vout vss 250k m=1
+Vdd_c1 net1 vmem 0
+.save i(vdd_c1)
+V2 net4 GND 0.49
+R3 v_bias net4 10 m=1
+V3 vss GND 0
+x2 vdd vmem2 vout2 vss v_bias AH_neuron
+I1 vdd net2 PULSE(0 1000p 1u 10n 10n 1u 5u)
+R5 vout2 vss 250k m=1
+Vdd_c2 net2 vmem2 0
+.save i(vdd_c2)
+x1 vdd vmem vout vss v_bias AH_neuron_pex
+**** begin user architecture code
+
+
+.option method=gear seed=12
+.tran 100n 5m
+.include /foss/designs/Mosbious_2025_Spikcore/designs/pex/AH_neuron/AH_neuron_pex.spice
+.param vd_v=3.3
+.save allcurrents
+.options save currents
+.control
+	set num_threads=16
+	reset
+	save all
+        run
+        write AH_neuron_pex.raw
+.endc
+
+
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_typical
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  designs/libs/core_AH_neuron/AH_neuron.sym # of pins=5
+** sym_path: /foss/designs/Mosbious_2025_Spikcore/designs/libs/core_AH_neuron/AH_neuron.sym
+** sch_path: /foss/designs/Mosbious_2025_Spikcore/designs/libs/core_AH_neuron/AH_neuron.sch
+.subckt AH_neuron vdd Current_in vout vss v_bias
+*.iopin vdd
+*.iopin vss
+*.iopin Current_in
+*.iopin vout
+*.iopin v_bias
+XM5 vout net1 vdd vdd pfet_03v3 L=1.4u W=0.84u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM1 net1 Current_in vdd vdd pfet_03v3 L=0.56u W=0.44u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM2 vout net1 vss vss nfet_03v3 L=0.78u W=0.42u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM3 net1 Current_in vss vss nfet_03v3 L=0.56u W=0.44u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM4 net2 vout vss vss nfet_03v3 L=1.68u W=0.42u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XC3 vout Current_in cap_mim_2f0fF c_width=6e-6 c_length=5e-6 m=1
+XM6 Current_in v_bias net2 vss nfet_03v3 L=5.6u W=0.42u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+.ends
+
+.GLOBAL GND
+.end

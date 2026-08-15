@@ -1,0 +1,11 @@
+** sch_path: /foss/designs/Mosbious_2025_spiking4all/designs/libs/core_AH_neuron/AH_neuron.sch
+.subckt AH_neuron vdd Current_in vout vss v_bias
+*.PININFO vdd:B vss:B Current_in:B vout:B v_bias:B
+XM5 vout net1 vdd vdd pfet_03v3 L=1.4u W=0.84u nf=1 m=1
+XM1 net1 Current_in vdd vdd pfet_03v3 L=0.56u W=0.44u nf=1 m=1
+XM2 vout net1 vss vss nfet_03v3 L=0.78u W=0.42u nf=1 m=1
+XM3 net1 Current_in vss vss nfet_03v3 L=0.56u W=0.44u nf=1 m=1
+XM4 net2 vout vss vss nfet_03v3 L=1.68u W=0.42u nf=1 m=1
+XC3 vout Current_in cap_mim_2f0fF c_width=6e-6 c_length=5e-6 m=1
+XM6 Current_in v_bias net2 vss nfet_03v3 L=5.6u W=0.42u nf=1 m=1
+.ends
