@@ -77,8 +77,8 @@ N 320 -1290 340 -1290 {lab=vmem2}
 C {vsource.sym} 270 -790 0 0 {name=V1 value=3.3 savecurrent=false}
 C {devices/code_shown.sym} -405 -1230 0 0 {name=s1 only_toplevel=false value="
 .option method=gear seed=12
+.include /foss/designs/EDS_SummerSchool_2026/designs/simulation/pex/AH_neuron/AH_neuron_pex.spice
 .tran 100n 5m
-.include /foss/designs/Mosbious_2025_Spikcore/designs/pex/AH_neuron/AH_neuron_pex.spice
 .param vd_v=3.3
 .save allcurrents
 .options save currents
@@ -136,7 +136,7 @@ descr="load waves"
 tclcommand="xschem raw_read $netlist_dir/AH_neuron_pex.raw tran"
 }
 C {lab_pin.sym} 470 -880 3 0 {name=p14 sig_type=std_logic lab=vss}
-C {designs/libs/core_AH_neuron/AH_neuron.sym} 230 -1300 0 0 {name=x2}
+C {designs/simulation/schematic/core_AH_neuron/AH_neuron.sym} 230 -1300 0 0 {name=x2}
 C {isource.sym} 260 -1420 0 0 {name=I1 value="PULSE(0 1000p 1u 10n 10n 1u 5u)"}
 C {lab_pin.sym} 260 -1470 0 0 {name=p10 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 470 -1370 0 0 {name=p11 sig_type=std_logic lab=vdd}
@@ -150,4 +150,4 @@ m=1}
 C {ammeter.sym} 290 -1290 3 0 {name=Vdd_c2 savecurrent=true spice_ignore=0}
 C {lab_pin.sym} 430 -1270 3 0 {name=p15 sig_type=std_logic lab=v_bias}
 C {lab_pin.sym} 470 -1220 3 0 {name=p16 sig_type=std_logic lab=vss}
-C {designs/pex/AH_neuron/AH_neuron_pex.sym} 230 -960 0 0 {name=x1}
+C {designs/simulation/pex/AH_neuron/AH_neuron_pex.sym} 230 -960 0 0 {name=x1}

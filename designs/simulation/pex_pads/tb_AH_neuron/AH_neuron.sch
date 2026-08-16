@@ -151,7 +151,7 @@ C {lab_pin.sym} 210 -20 0 1 {name=p16 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 330 60 0 1 {name=p17 sig_type=std_logic lab=pad}
 C {lab_pin.sym} 170 -230 2 1 {name=p18 sig_type=std_logic lab=ASIG_in}
 C {lab_pin.sym} -170 60 2 1 {name=p24 sig_type=std_logic lab=ASIG_in}
-C {designs/pex/AH_neuron/AH_neuron_pex.sym} -260 50 0 0 {name=x2}
+C {designs/simulation/pex/AH_neuron/AH_neuron_pex.sym} -260 50 0 0 {name=x2}
 C {devices/code_shown.sym} -885 -790 0 0 {name=s2 only_toplevel=false value="
 .option method=gear seed=12
 .tran 10u 5m

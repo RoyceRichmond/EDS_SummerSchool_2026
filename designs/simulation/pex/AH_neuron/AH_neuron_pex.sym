@@ -3,7 +3,7 @@ G {}
 K {type=primitive
 format="@name @pinlist @symname"
 template="name=x1"
-spice_sym_def=".include /foss/designs/Mosbious_2025_Spikcore/designs/pex/AH_neuron/AH_neuron_pex.spice"}
+}
 V {}
 S {}
 E {}
