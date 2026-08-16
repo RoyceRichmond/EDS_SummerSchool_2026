@@ -75,8 +75,8 @@ C {vsource.sym} -360 0 0 0 {name=V1 value=vd_v savecurrent=false}
 C {devices/code_shown.sym} -95 280 0 0 {name=s1 only_toplevel=false value="
 .option method=gear seed=12
 .tran 100u 15m
-.include /foss/designs/Mosbious_2025_Spikcore/designs/pex/AH_neuron/AH_neuron_pex.spice
-.include /foss/designs/Mosbious_2025_Spikcore/miscellaneous/sscs-chipathon/resources/Integration/Chipathon2025_pads/xschem/gf180mcu_fd_io__asig_5p0_extracted.spice
+.include /foss/designs/EDS_SummerSchool_2026/designs/simulation/pex/AH_neuron/AH_neuron_pex.spice
+.include /foss/designs/EDS_SummerSchool_2026/designs/simulation/pads/gf180mcu_fd_io__asig_5p0_extracted.spice
 .param vd_v=3.3
 .save allcurrents
 .options save currents
@@ -130,10 +130,6 @@ C {lab_wire.sym} -130 -310 0 0 {name=p8 sig_type=std_logic lab=DVSS}
 C {lab_wire.sym} -30 -310 0 0 {name=p9 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} -260 190 0 0 {name=p7 sig_type=std_logic lab=pad}
 C {gnd.sym} -260 250 0 0 {name=l5 lab=GND}
-C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_asig_5p0.sym} 330 140 0 1 {name=IO1
-model=gf180mcu_fd_io__asig_5p0_extracted
-spiceprefix=X
-}
 C {vsource.sym} -350 230 0 0 {name=V3 value=0.49	 savecurrent=false}
 C {lab_pin.sym} -350 140 0 0 {name=p10 sig_type=std_logic lab=v_bias}
 C {res.sym} -350 170 0 0 {name=R3
@@ -167,7 +163,7 @@ write AH_neuron_pad.raw
 .endc
 "
 spice_ignore=true}
-C {/foss/designs/sscs-chipathon-2025/resources/Integration/Chipathon2025_pads/xschem/symbols/io_asig_5p0.sym} 370 -150 0 1 {name=IO2
+C {designs/simulation/pads/io_asig_5p0.sym} 370 -150 0 1 {name=IO2
 model=gf180mcu_fd_io__asig_5p0_extracted
 spiceprefix=X
 }
@@ -176,3 +172,7 @@ C {lab_wire.sym} 290 -150 0 1 {name=p20 sig_type=std_logic lab=DVSS}
 C {lab_wire.sym} 250 -150 0 1 {name=p21 sig_type=std_logic lab=VSS}
 C {lab_pin.sym} 250 -310 0 1 {name=p22 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 390 -230 3 1 {name=p23 sig_type=std_logic lab=pad}
+C {designs/simulation/pads/io_asig_5p0.sym} 130 140 0 0 {name=IO1
+model=gf180mcu_fd_io__asig_5p0_extracted
+spiceprefix=X
+}
